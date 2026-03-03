@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
+import cors from "cors";
 import express, { Application, Request, Response } from "express";
 import authRoutes from "./routes/authRoutes";
 import connectDB from "./config/db";
@@ -25,6 +26,12 @@ const PORT: number = Number(env.PORT);
 connectDB();
 
 app.use(express.json());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 // Security Headers
 app.use(helmet());
 

@@ -31,11 +31,16 @@ export const register = async (req: Request, res: Response): Promise<void> => {
       password: hashedPassword
     });
 
-    const token: string = jwt.sign(
-      { id: user._id },
-      env.JWT_SECRET as string,
-      { expiresIn: "7d" }
-    );
+    const token = jwt.sign(
+  {
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+    role: user.role,  
+  },
+  process.env.JWT_SECRET!,
+  { expiresIn: "7d" }
+);
 
     res.status(201).json({ token });
   } catch (error) {
@@ -61,11 +66,16 @@ export const login = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    const token: string = jwt.sign(
-      { id: user._id },
-      env.JWT_SECRET as string,
-      { expiresIn: "7d" }
-    );
+    const token = jwt.sign(
+  {
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+    role: user.role,       
+  },
+  process.env.JWT_SECRET!,
+  { expiresIn: "7d" }
+);
 
     res.status(200).json({ token });
   } catch (error) {
