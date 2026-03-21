@@ -12,6 +12,8 @@ Built with React · Node.js · MongoDB · TypeScript
 [![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?logo=mongodb&logoColor=white)](https://mongodb.com)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 
+### 🚀 Live Demo: [https://skills-forge-project.vercel.app](https://skills-forge-project.vercel.app/)
+*(Backend API is hosted on Render at `https://skillsforgeproject.onrender.com`)*
 </div>
 
 ---
