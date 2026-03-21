@@ -3,7 +3,10 @@ import jwt from "jsonwebtoken";
 import User, { IUser } from "../models/Users";
 
 interface JwtPayload {
-  id: string;
+  _id: string;
+  name: string;
+  email: string;
+  role: string;
 }
 
 export interface AuthRequest extends Request {
@@ -30,7 +33,7 @@ export const protect = async (
       process.env.JWT_SECRET as string
     ) as JwtPayload;
 
-    const user = await User.findById(decoded.id).select("-password");
+    const user = await User.findById(decoded._id).select("-password");
 
     if (!user) {
       res.status(401).json({ message: "User no longer exists" });

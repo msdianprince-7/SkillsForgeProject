@@ -4,8 +4,8 @@ import cors from "cors";
 import express, { Application, Request, Response } from "express";
 import authRoutes from "./routes/authRoutes";
 import connectDB from "./config/db";
-import { protect, AuthRequest,authorize } from "./middlewares/authMiddlewares";
 import skillRoutes from "./routes/skillRoutes";
+import userRoutes from "./routes/userRoutes";
 import { errorHandler } from "./middlewares/errorMiddlewares";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
@@ -47,26 +47,10 @@ const limiter = rateLimit({
 
 app.use("/api", limiter);
 
-app.get("/api/profile", protect, (req: AuthRequest, res: Response) => {
-  res.json({
-    message: "Protected profile route 🔐",
-    user: req.user
-  });
-});
-app.get(
-  "/api/admin",
-  protect,
-  authorize("admin"),
-  (req: AuthRequest, res: Response) => {
-    res.json({
-      message: "Welcome Admin 👑",
-      user: req.user
-    });
-  }
-);
 
 app.use("/api/auth", authRoutes);
 app.use("/api/skills", skillRoutes);
+app.use("/api/users", userRoutes);
 app.use(errorHandler);
 
 app.get("/", (req: Request, res: Response) => {

@@ -38,7 +38,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     email: user.email,
     role: user.role,  
   },
-  process.env.JWT_SECRET!,
+  env.JWT_SECRET,
   { expiresIn: "7d" }
 );
 
@@ -73,7 +73,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     email: user.email,
     role: user.role,       
   },
-  process.env.JWT_SECRET!,
+  env.JWT_SECRET,
   { expiresIn: "7d" }
 );
 

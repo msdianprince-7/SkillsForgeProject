@@ -5,18 +5,20 @@ import {
   getSkillById,
   updateSkill,
   deleteSkill,
+  getSkillStats,
 } from "../controllers/skillController";
-import { protect, authorize } from "../middlewares/authMiddlewares";
+import { protect } from "../middlewares/authMiddlewares";
 
 const router = Router();
 
 // ── Public routes ─────────────────────────────
 router.get("/", getSkills);
+router.get("/stats", protect, getSkillStats);
 router.get("/:id", getSkillById);
 
-// ── Admin only routes ─────────────────────────
-router.post("/", protect, authorize("admin"), createSkill);
-router.put("/:id", protect, authorize("admin"), updateSkill);
-router.delete("/:id", protect, authorize("admin"), deleteSkill);
+// ── Authenticated user routes ─────────────────
+router.post("/", protect, createSkill);
+router.put("/:id", protect, updateSkill);
+router.delete("/:id", protect, deleteSkill);
 
 export default router;
