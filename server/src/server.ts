@@ -26,9 +26,14 @@ const PORT: number = Number(env.PORT);
 connectDB();
 
 app.use(express.json());
+const allowedOrigins = [
+  "http://localhost:5173",
+  process.env.CLIENT_URL,
+].filter(Boolean) as string[];
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: allowedOrigins,
     credentials: true,
   })
 );
