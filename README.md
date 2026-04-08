@@ -2,7 +2,7 @@
 
 # ⚒️ SkillForge
 
-**A modern full-stack skill management platform to track, organize, and master your skills.**
+**A modern full-stack skill management platform to track, organize and master your skills.**
 
 Built with React · Node.js · MongoDB · TypeScript
 
